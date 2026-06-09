@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login - Mukhiya Diagnostic Center</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    background:linear-gradient(135deg,#0077b6,#00b4d8);
+}
+
+.login-box{
+    width:380px;
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 15px 35px rgba(0,0,0,.2);
+    text-align:center;
+    animation:fadeIn .8s ease;
+}
+
+.login-box h2{
+    color:#0077b6;
+    margin-bottom:10px;
+}
+
+.login-box p{
+    color:#666;
+    margin-bottom:25px;
+}
+
+input{
+    width:100%;
+    padding:14px;
+    margin:12px 0;
+    border:2px solid #ddd;
+    border-radius:10px;
+    font-size:16px;
+}
+
+input:focus{
+    outline:none;
+    border-color:#0077b6;
+    box-shadow:0 0 10px rgba(0,119,182,.3);
+}
+
+button{
+    width:100%;
+    padding:14px;
+    margin-top:10px;
+    border:none;
+    border-radius:10px;
+    background:#0077b6;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#023e8a;
+    transform:translateY(-3px);
+}
+
+.back-btn{
+    display:inline-block;
+    margin-top:20px;
+    text-decoration:none;
+    color:#0077b6;
+    font-weight:bold;
+}
+
+.back-btn:hover{
+    text-decoration:underline;
+}
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="login-box">
+
+    <h2>🔐 Admin Login</h2>
+
+    <p>Manage Diagnostic Bookings</p>
+
+    <input
+        type="text"
+        id="username"
+        placeholder="Enter Username"
+    >
+
+    <input
+        type="password"
+        id="password"
+        placeholder="Enter Password"
+    >
+
+    <button onclick="login()">
+        Login
+    </button>
+
+    <a href="index.html" class="back-btn">
+        🏠 Back to Home
+    </a>
+
+</div>
+
+<script>
+
+function login(){
+
+    const username =
+        document.getElementById("username").value;
+
+    const password =
+        document.getElementById("password").value;
+
+    if(
+        username === "admin" &&
+        password === "12345"
+    ){
+
+        alert("Login Successful");
+
+        window.location.href = "admin.html";
+
+    }
+    else{
+
+        alert("Invalid Username or Password");
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>

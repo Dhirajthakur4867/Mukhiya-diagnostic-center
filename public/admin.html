@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f7fc;
+    padding:20px;
+}
+
+h1{
+    text-align:center;
+    color:#0077b6;
+    margin-bottom:20px;
+}
+
+#totalBookings{
+    background:#0077b6;
+    color:white;
+    padding:20px;
+    margin-bottom:20px;
+    border-radius:10px;
+    font-size:24px;
+    font-weight:bold;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+#searchInput{
+    width:100%;
+    padding:12px;
+    border:2px solid #0077b6;
+    border-radius:8px;
+    margin-bottom:20px;
+    font-size:16px;
+}
+
+#searchInput:focus{
+    outline:none;
+    box-shadow:0 0 10px rgba(0,119,182,.4);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+th,td{
+    border:1px solid #ddd;
+    padding:12px;
+    text-align:center;
+}
+
+th{
+    background:#0077b6;
+    color:white;
+}
+
+tr:nth-child(even){
+    background:#f8f8f8;
+}
+
+tr:hover{
+    background:#eaf6ff;
+}
+
+.delete-btn{
+    background:red;
+    color:white;
+    border:none;
+    padding:8px 15px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.delete-btn:hover{
+    transform:scale(1.05);
+    opacity:0.9;
+}
+
+</style>
+
+</head>
+<body>
+
+<h1>Mukhiya Diagnostic Admin Panel</h1>
+
+<div id="totalBookings">
+    Total Bookings: 0
+</div>
+
+<input
+type="text"
+id="searchInput"
+placeholder="Search by Name or Mobile"
+onkeyup="searchBookings()">
+
+<table>
+
+<thead>
+<tr>
+    <th>Name</th>
+    <th>Mobile</th>
+    <th>Email</th>
+    <th>Test</th>
+    <th>Message</th>
+    <th>Date</th>
+    <th>Action</th>
+</tr>
+</thead>
+
+<tbody id="bookingTable">
+</tbody>
+
+</table>
+
+<script>
+
+let allBookings = [];
+
+async function loadBookings(){
+
+    const response = await fetch("/bookings");
+
+    const bookings = await response.json();
+
+    allBookings = bookings;
+
+    document.getElementById("totalBookings").innerText =
+        `Total Bookings: ${bookings.length}`;
+
+    displayBookings(bookings);
+}
+
+function displayBookings(bookings){
+
+    const table = document.getElementById("bookingTable");
+
+    table.innerHTML = "";
+
+    bookings.forEach((booking)=>{
+
+        
+
+        table.innerHTML += `
+        <tr>
+            <td>${booking.name}</td>
+            <td>${booking.mobile}</td>
+            <td>${booking.email}</td>
+            <td>${booking.test}</td>
+            <td>${booking.message}</td>
+
+            <td>
+                <button
+                class="delete-btn"
+                onclick="deleteBooking('${booking._id}')">
+                Delete
+                </button>
+            </td>
+
+            <td>
+                ${new Date(booking.createdAt).toLocaleDateString()}
+            </td>
+        </tr>
+        `;
+
+    });
+
+}
+
+function searchBookings(){
+
+    const searchValue =
+        document.getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+    const filteredBookings = allBookings.filter((booking)=>{
+
+        return (
+            booking.name.toLowerCase().includes(searchValue)
+            ||
+            booking.mobile.includes(searchValue)
+        );
+
+    });
+
+    displayBookings(filteredBookings);
+}
+
+async function deleteBooking(id){
+
+    const confirmDelete =
+        confirm("Are you sure you want to delete this booking?");
+
+    if(!confirmDelete) return;
+
+    const response = await fetch(`/booking/${id}`,{
+        method:"DELETE"
+    });
+
+    const data = await response.json();
+
+    alert(data.message);
+
+    loadBookings();
+}
+
+loadBookings();
+
+</script>
+
+</body>
+</html>

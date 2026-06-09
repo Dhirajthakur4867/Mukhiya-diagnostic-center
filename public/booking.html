@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Test - Mukhiya Diagnostic Center</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f7fc;
+}
+
+nav{
+    background:#0077b6;
+    color:white;
+    padding:15px 50px;
+}
+
+.tests{
+padding:80px 10%;
+}
+
+.test-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:20px;
+}
+
+.card{
+box-shadow:0 0 10px rgba(0,0,0,.1);
+padding:15px;
+text-align:center;
+}
+
+.card img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+
+.card button{
+background:#0077b6;
+color:white;
+border:none;
+padding:10px 20px;
+cursor:pointer;
+margin-top:10px;
+}
+
+.booking{
+    max-width:750px;
+    margin:50px auto;
+    padding:35px;
+    border-radius:20px;
+    background:linear-gradient(135deg,#0077b6,#00b4d8);
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+.booking h2{
+    text-align:center;
+    color:white;
+    margin-bottom:25px;
+    font-size:32px;
+}
+
+.booking input,
+.booking select,
+.booking textarea{
+    width:100%;
+    padding:14px;
+    margin:12px 0;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+    outline:none;
+}
+
+.booking textarea{
+    height:120px;
+    resize:none;
+}
+
+.booking button{
+    width:100%;
+    padding:14px;
+    margin-top:10px;
+    background:#ffb703;
+    color:#000;
+    border:none;
+    border-radius:10px;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.booking button:hover{
+    background:#ffd166;
+    transform:scale(1.03);
+}
+
+.admin-btn{
+    display:block;
+    width:220px;
+    margin:25px auto;
+    text-align:center;
+    background:#0077b6;
+    color:white;
+    padding:14px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.admin-btn:hover{
+    background:#005f8d;
+    transform:translateY(-3px);
+}
+
+footer{
+    background:#111;
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin-top:40px;
+}
+</style>
+
+</head>
+<body>
+
+<nav>
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+        <h2>Mukhiya Diagnostic Center</h2>
+
+        <a href="index.html"
+        style="
+        color:white;
+        text-decoration:none;
+        font-weight:bold;">
+        Home
+        </a>
+    </div>
+</nav>
+
+
+
+<section id="tests" class="tests">
+
+<h2>Popular Diagnostic Tests</h2>
+
+<div class="test-grid">
+
+<div class="card">
+<img src="BloodTest.jpg">
+<h3>Blood Test</h3>
+<p>₹500</p>
+<button onclick="addTest('Blood Test',500)">Add Test</button>
+</div>
+
+<div class="card">
+<img src="deee.jpg">
+<h3>Thyroid Profile</h3>
+<p>₹800</p>
+<button onclick="addTest('Thyroid Profile',800)">Add Test</button>
+</div>
+
+<div class="card">
+<img src="heartt.jpg">
+<h3>Diabetes Test</h3>
+<p>₹1200</p>
+<button onclick="addTest('Diabetes Test',1200)">Add Test</button>
+</div>
+
+<div class="card">
+<img src="heartt.jpg">
+<h3>Heart Package</h3>
+<p>₹3000</p>
+<button onclick="addTest('Heart Package',3000)">Add Test</button>
+</div>
+
+<div class="card">
+<img src="liver.jpg">
+<h3>Liver Function Test</h3>
+<p>₹900</p>
+<button onclick="addTest('Liver Function',900)">Add Test</button>
+</div>
+
+<div class="card">
+<img src="Kidney.jpg">
+<h3>Kidney Function Test</h3>
+<p>₹950</p>
+<button onclick="addTest('Kidney Function',950)">Add Test</button>
+</div>
+
+</div>
+
+</section>
+
+<section class="booking">
+
+    <h2>Book Your Diagnostic Test</h2>
+
+    <form id="bookingForm">
+
+        <input type="text" id="name" placeholder="Patient Name" required>
+
+        <input type="tel" id="mobile" placeholder="Mobile Number" required>
+
+        <input type="email" id="email" placeholder="Email Address" required>
+
+        <select id="test" required>
+            <option value="">Select Test</option>
+            <option>Blood Test</option>
+            <option>Thyroid Profile</option>
+            <option>Diabetes Test</option>
+            <option>Heart Package</option>
+            <option>Liver Function Test</option>
+            <option>Kidney Function Test</option>
+        </select>
+
+        <textarea id="message" placeholder="Additional Message (Optional)"></textarea>
+
+        <button type="submit">Book Now</button>
+
+    </form>
+
+</section>
+
+<a href="admin-login.html" class="admin-btn">
+    Admin Login
+</a>
+
+
+
+
+<footer>
+ Mukhiya Diagnostic Center
+</footer>
+
+<script>
+document.getElementById("bookingForm").addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+    const bookingData = {
+        name: document.getElementById("name").value,
+        mobile: document.getElementById("mobile").value,
+        email: document.getElementById("email").value,
+        test: document.getElementById("test").value,
+        message: document.getElementById("message").value
+    };
+
+    try {
+
+        const response = await fetch("http://localhost:3000/booking", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(bookingData)
+        });
+
+        const data = await response.json();
+
+        alert(data.message);
+
+        document.getElementById("bookingForm").reset();
+
+    } catch (error) {
+
+        console.log(error);
+
+        alert("Something went wrong");
+
+    }
+
+});
+</script>
+</body>
+</html>

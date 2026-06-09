@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mukhiya Diagnostic Center</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+
+
+<body>
+
+    <style>
+        *{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+.hero{
+height:100vh;
+background:url("bannerr.jpg");
+background-size:cover;
+background-position:center;
+}
+
+.overlay{
+height:100%;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+background:rgba(0,0,0,.5);
+color:white;
+}
+
+nav{
+display:flex;
+justify-content:space-between;
+padding:15px 50px;
+background:#0077b6;
+color:white;
+}
+
+nav ul{
+display:flex;
+gap:20px;
+list-style:none;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+}
+
+.btn{
+background:white;
+padding:12px 25px;
+text-decoration:none;
+margin-top:15px;
+}
+
+
+
+
+
+#about {
+    background: #f8f9fa;
+}
+
+#about h2 {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+#about p {
+    text-align: justify;
+    line-height: 1.8;
+    font-size: 16px;
+}
+.tests{
+padding:80px 10%;
+}
+
+.test-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:20px;
+}
+
+.card{
+box-shadow:0 0 10px rgba(0,0,0,.1);
+padding:15px;
+text-align:center;
+}
+
+.card img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+
+.card button{
+background:#0077b6;
+color:white;
+border:none;
+padding:10px 20px;
+cursor:pointer;
+margin-top:10px;
+}
+
+.billing{
+padding:80px 10%;
+background:#f3f3f3;
+}
+
+.billing ul{
+margin:20px 0;
+}
+
+.contact{
+padding:80px 10%;
+}
+
+.contact input,
+.contact textarea{
+width:100%;
+padding:12px;
+margin:10px 0;
+}
+
+footer{
+background:#111;
+color:white;
+padding:20px;
+text-align:center;
+}
+    </style>
+    
+<nav>
+    <h2>Mukhiya Diagnostic</h2>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#tests">Tests</a></li>
+        <li><a href="#contact">Contact</a></li>
+        
+        
+    </ul>
+</nav>
+
+<section id="home" class="hero">
+    <div class="overlay">
+        <h1>Mukhiya Diagnostic Center</h1>
+        <p>Trusted Healthcare & Accurate Testing</p>
+        <a href="booking.html" class="btn">Book Test</a>
+        
+    </div>
+</section>
+
+<!-- About Us Section -->
+<section id="about" class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">About Us</h2>
+
+        <p>
+            Welcome to our Diagnostic Center, where accuracy, reliability, and patient care are our top priorities. We provide a wide range of diagnostic services, including blood tests, pathology, radiology, ECG, ultrasound, and comprehensive health checkups.
+        </p>
+
+        <p>
+            Our center is equipped with modern technology and advanced medical equipment to ensure precise results and timely reporting. Our experienced team of healthcare professionals is committed to maintaining the highest standards of quality and patient satisfaction.
+        </p>
+
+        <p>
+            We believe that early diagnosis is the key to better treatment and healthier lives. Our mission is to support patients and healthcare providers with trustworthy diagnostic solutions that contribute to effective medical care.
+        </p>
+    </div>
+</section>
+<section id="tests" class="tests">
+
+<h2>Popular Diagnostic Tests</h2>
+
+<div class="test-grid">
+
+<div class="card">
+<img src="BloodTest.jpg">
+<h3>Blood Test</h3>
+<p>₹500</p>
+<button onclick="addTest('Blood Test',500)">Add Test</button>
+</div>
+
+<div class="card">
+<img src="deee.jpg">
+<h3>Thyroid Profile</h3>
+<p>₹800</p>
+<button onclick="addTest('Thyroid Profile',800)">Add Test</button>
+</div>
+
+<div class="card">
+<img src="heartt.jpg">
+<h3>Diabetes Test</h3>
+<p>₹1200</p>
+<button onclick="addTest('Diabetes Test',1200)">Add Test</button>
+</div>
+
+<div class="card">
+<img src="heartt.jpg">
+<h3>Heart Package</h3>
+<p>₹3000</p>
+<button onclick="addTest('Heart Package',3000)">Add Test</button>
+</div>
+
+<div class="card">
+<img src="liver.jpg">
+<h3>Liver Function Test</h3>
+<p>₹900</p>
+<button onclick="addTest('Liver Function',900)">Add Test</button>
+</div>
+
+<div class="card">
+<img src="Kidney.jpg">
+<h3>Kidney Function Test</h3>
+<p>₹950</p>
+<button onclick="addTest('Kidney Function',950)">Add Test</button>
+</div>
+
+</div>
+
+</section>
+
+<section class="billing">
+
+<h2>Your Bill</h2>
+
+<ul id="selectedTests"></ul>
+
+<h3>Subtotal: ₹<span id="subtotal">0</span></h3>
+<h3>GST (18%): ₹<span id="gst">0</span></h3>
+<h2>Total: ₹<span id="grandTotal">0</span></h2>
+
+</section>
+
+<section class="contact" id="contact">
+
+<h2>Contact Us</h2>
+
+<input type="text" placeholder="Name">
+<input type="email" placeholder="Email">
+<textarea placeholder="Message"></textarea>
+
+<button>Submit</button>
+
+</section>
+
+<footer>
+© 2026 Mukhiya Diagnostic Center
+</footer>
+
+<script>
+
+let total = 0;
+
+function addTest(name, price) {
+
+    const selectedTests = document.getElementById("selectedTests");
+
+    selectedTests.innerHTML += `
+        <tr>
+            <td>${name}</td>
+            <td>₹${price}</td>
+        </tr>
+    `;
+
+    total += price;
+
+    document.getElementById("subtotal").innerText = total;
+
+    const gst = total * 0.18;
+
+    document.getElementById("gst").innerText = gst.toFixed(2);
+
+    document.getElementById("grandTotal").innerText =
+        (total + gst).toFixed(2);
+}
+
+</script>
+
+</body>
+</html>
