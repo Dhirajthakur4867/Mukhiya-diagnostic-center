@@ -1,14 +1,14 @@
 {
   "name": "manu",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "Mukhiya Diagnostic Center Project",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Dhiraj Kumar",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
